@@ -44,7 +44,7 @@ CREATE TABLE Sales_DW.dbo.FactSales(
 	OrderDateKey int NOT NULL,
 	DueDateKey int NOT NULL,
 	ShipDateKey int NOT NULL,
-	SalesOrderNumber nvarchar(20) NOT NULL,
+	SalesOrderNumber varchar(20) NOT NULL,
 	RevisionNumber tinyint NOT NULL,
 	OrderQuantity smallint NOT NULL,
 	UnitPrice float NOT NULL,
@@ -56,7 +56,7 @@ CREATE TABLE Sales_DW.dbo.FactSales(
 	TaxAmt Float NOT NULL,
 	Freight Float NOT NULL,
 	TotalDue float NOT NULL,
-	CustomerPONumber nvarchar(25) NULL,
+	CustomerPONumber varchar(25) NULL,
 	OrderDate datetime NULL,
 	DueDate datetime NULL,
 	ShipDate datetime NULL
@@ -82,11 +82,11 @@ CREATE TABLE Sales_DW.dbo.Dim_Date (
     FullDate DATE NOT NULL,           
     Day TINYINT NOT NULL,               
     Month TINYINT NOT NULL,            
-    MonthName NVARCHAR(20) NOT NULL,   
+    MonthName VARCHAR(20) NOT NULL,   
     CalendarQuarter TINYINT NOT NULL,   
     CalendarYear SMALLINT NOT NULL,    
     DayOfWeek TINYINT NOT NULL,         
-    DayNameOfWeek NVARCHAR(20) NOT NULL, 
+    DayNameOfWeek VARCHAR(20) NOT NULL, 
     WeekOfYear TINYINT NOT NULL,        
     IsWeekend BIT NOT NULL             
 );
@@ -128,7 +128,8 @@ go
 
 Create Table Sales_DW.dbo.Dim_Product
 (
-	ProductID int NOT NULL IDENTITY(1,1) Primary Key,
+	id int not null IDENTITY(1,1) Primary Key,
+	ProductID int NOT NULL,
 	Name varchar(50) NOT NULL,
 	ProductNumber varchar(10) NOT NULL,
 	Color varchar(30),
@@ -144,8 +145,8 @@ Create Table Sales_DW.dbo.Dim_Product
 	ProductSubcategoryID int,
 	ProductModelID int,
 	StartDate DATETIME,
-    EndDate DATETIME,
-    IsCurrent BIT
+    	EndDate DATETIME,
+    	IsCurrent BIT
 )
 go
 
@@ -164,9 +165,9 @@ Create Table Sales_DW.dbo.Dim_Product_Photos
 	ProductID int NOT NULL,
 	product_PhotoID int NOT NULL,
 	Small_image Varbinary(MAX) NOT NULL,
-	Small_image_name nvarchar(50) NOT NULL,
+	Small_image_name varchar(50) NOT NULL,
 	Large_image Varbinary(MAX) NOT NULL,
-	Large_image_name nvarchar(50) NOT NULL,
+	Large_image_name varchar(50) NOT NULL,
 
 	Primary key(ProductID,product_PhotoID)
 )
