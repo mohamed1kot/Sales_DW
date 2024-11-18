@@ -52,6 +52,7 @@ BEGIN
 
     INSERT INTO Sales_DW.dbo.Dim_Product
     (
+	ProductID,
         Name,
         ProductNumber,
         Color,
@@ -71,6 +72,7 @@ BEGIN
         IsCurrent
     )
     SELECT
+	ol.ProductID,
         ol.Name,
         ol.ProductNumber,
         ol.Color,
@@ -93,7 +95,6 @@ BEGIN
     -- Clean temporary table
     DROP TABLE #temp_Products;
 
-	Set IDENTITY_INSERT Sales_DW.dbo.Dim_Product ON;
     INSERT INTO Sales_DW.dbo.Dim_Product
     (
         ProductID,
@@ -136,7 +137,6 @@ BEGIN
         1 AS IsCurrent
     FROM Sales_OLTP.Production.Product ol
     WHERE NOT EXISTS (SELECT 1 FROM Sales_DW.dbo.Dim_Product dp WHERE dp.ProductID = ol.ProductID);
-	Set IDENTITY_INSERT Sales_DW.dbo.Dim_Product OFF;
 END
 GO
 

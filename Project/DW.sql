@@ -233,7 +233,6 @@ go
 
 -----------------initial_inserts------------------------
 
-Set IDENTITY_INSERT Sales_DW.dbo.Dim_Product ON;
 INSERT INTO Sales_DW.dbo.Dim_Product
 (
 	ProductID,
@@ -275,7 +274,6 @@ SELECT
     NULL AS EndDate,
     1 AS IsCurrent
 FROM Sales_OLTP.Production.Product;
-Set IDENTITY_INSERT Sales_DW.dbo.Dim_Product OFF;
 go
 ----------------------------------------------
 
@@ -356,30 +354,30 @@ select
 	C.StoreID,
 	C.personID,
 	C.TerritoryID,
-    H.CustomerID AS CustomerID,
-    CurrencyRateID AS CurrencyID,
+    	H.CustomerID AS CustomerID,
+    	CurrencyRateID AS CurrencyID,
 	ShipMethodID,
 	H.CreditCardID,
 	D.SpecialOfferID,
-    CONVERT(INT, FORMAT(OrderDate, 'yyyyMMdd')) AS OrderDateKey,
-    CONVERT(INT, FORMAT(DueDate, 'yyyyMMdd')) AS DueDateKey,
-    CONVERT(INT, FORMAT(ShipDate, 'yyyyMMdd')) AS ShipDateKey,
-    SalesOrderNumber,
-    RevisionNumber,
-    OrderQty AS OrderQuantity,
-    UnitPrice,
+    	CONVERT(INT, FORMAT(OrderDate, 'yyyyMMdd')) AS OrderDateKey,
+    	CONVERT(INT, FORMAT(DueDate, 'yyyyMMdd')) AS DueDateKey,
+    	CONVERT(INT, FORMAT(ShipDate, 'yyyyMMdd')) AS ShipDateKey,
+    	SalesOrderNumber,
+    	RevisionNumber,
+    	OrderQty AS OrderQuantity,
+    	UnitPrice,
 	UnitPriceDiscount,
-    LineTotal AS ExtendedAmount,
-    LineTotal - ( OrderQty *  UnitPrice) AS DiscountAmount,
-    UnitPrice *  OrderQty AS ProductStandardCost,
+    	LineTotal AS ExtendedAmount,
+    	LineTotal - ( OrderQty *  UnitPrice) AS DiscountAmount,
+    	UnitPrice *  OrderQty AS ProductStandardCost,
 	SubTotal,
-    TaxAmt,
-    Freight,
+    	TaxAmt,
+    	Freight,
 	TotalDue,
-    PurchaseOrderNumber AS CustomerPONumber,
-    OrderDate,
-    DueDate,
-    ShipDate
+    	PurchaseOrderNumber AS CustomerPONumber,
+   	OrderDate,
+    	DueDate,
+    	ShipDate
 from Sales_OLTP.Sales.SalesOrderDetail AS D
 left join Sales_OLTP.Sales.SalesOrderHeader AS H ON D.SalesOrderID=H.SalesOrderID
 left join Sales_OLTP.Sales.Customer  AS C ON C.CustomerID = H.CustomerID
@@ -593,7 +591,9 @@ SELECT 5, 'Shipped'
 UNION ALL
 SELECT 6, 'Cancelled';
 go
------------------------------------------------
+---------------- Foreign Keys -------------------------------
+
+
 Alter Table Sales_DW.dbo.FactSales
 ADD CONSTRAINT FK_Dim_status Foreign Key(StatusID)
 References Sales_DW.dbo.Dim_Statuses(StatusID)
