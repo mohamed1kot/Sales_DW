@@ -98,7 +98,7 @@ This project involves extracting data from the **AdventureWorks** transactional 
 
 ### 🤝 Contributing
 - Contributions are welcome! Please fork this repository, make your changes, and submit a pull request.
-
+---
 ### Authors
 
 - <span style="color: blue;">Sophy Farag</span> 
