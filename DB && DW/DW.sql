@@ -44,7 +44,7 @@ CREATE TABLE Sales_DW.dbo.FactSales(
 	OrderDateKey int NOT NULL,
 	DueDateKey int NOT NULL,
 	ShipDateKey int NOT NULL,
-	SalesOrderNumber varchar(20) NOT NULL,
+	SalesOrderNumber nvarchar(20) NOT NULL,
 	RevisionNumber tinyint NOT NULL,
 	OrderQuantity smallint NOT NULL,
 	UnitPrice float NOT NULL,
@@ -56,7 +56,7 @@ CREATE TABLE Sales_DW.dbo.FactSales(
 	TaxAmt Float NOT NULL,
 	Freight Float NOT NULL,
 	TotalDue float NOT NULL,
-	CustomerPONumber varchar(25) NULL,
+	CustomerPONumber nvarchar(25) NULL,
 	OrderDate datetime NULL,
 	DueDate datetime NULL,
 	ShipDate datetime NULL
@@ -68,8 +68,8 @@ GO
 CREATE Table Sales_DW.dbo.Dim_CreditCard
 (
 	CreditCardID int NOT NULL PRIMARY KEY,
-	CardType varchar(20) NOT NULL,
-	CardNumber varchar(20) NOT NULL,
+	CardType nvarchar(20) NOT NULL,
+	CardNumber nvarchar(20) NOT NULL,
 	ExpMonth int NOT NULL,
 	ExpYear int
 )
@@ -82,11 +82,11 @@ CREATE TABLE Sales_DW.dbo.Dim_Date (
     FullDate DATE NOT NULL,           
     Day TINYINT NOT NULL,               
     Month TINYINT NOT NULL,            
-    MonthName VARCHAR(20) NOT NULL,   
+    MonthName nvarchar(20) NOT NULL,   
     CalendarQuarter TINYINT NOT NULL,   
     CalendarYear SMALLINT NOT NULL,    
     DayOfWeek TINYINT NOT NULL,         
-    DayNameOfWeek VARCHAR(20) NOT NULL, 
+    DayNameOfWeek nvarchar(20) NOT NULL, 
     WeekOfYear TINYINT NOT NULL,        
     IsWeekend BIT NOT NULL             
 );
@@ -97,9 +97,9 @@ go
 CREATE Table Sales_DW.dbo.Dim_Territory
 (
 	TerritoryID int not null Primary key,
-	Name varchar(20) NOT NULL,
-	CountryRegionCode varchar(5) NOT NULL,
-	"Group" varchar(20) NOT NULL,
+	Name nvarchar(20) NOT NULL,
+	CountryRegionCode nvarchar(5) NOT NULL,
+	"Group" nvarchar(20) NOT NULL,
 	SalesYTD money NOT NULL,
 	SalesLastYear money NOT NULL,
 	CostYTD money NOT NULL,
@@ -113,10 +113,10 @@ Create Table Sales_DW.dbo.Dim_Offers
 (
 	SpecialOfferID int not NULL,
 	ProductID int not NULL,
-	Description varchar(50) NOT NULL,
-	DiscountPct Decimal NOT NULL,
-	Type varchar(50) NOT NULL,
-	Category varchar(50) NOT NULL,
+	Description nvarchar(50) NOT NULL,
+	DiscountPct float NOT NULL,
+	Type nvarchar(50) NOT NULL,
+	Category nvarchar(50) NOT NULL,
 	MinQty int not NULL ,
 	MaxQty int,
 
@@ -130,17 +130,17 @@ Create Table Sales_DW.dbo.Dim_Product
 (
 	id int not null IDENTITY(1,1) Primary Key,
 	ProductID int NOT NULL,
-	Name varchar(50) NOT NULL,
-	ProductNumber varchar(10) NOT NULL,
-	Color varchar(30),
+	Name nvarchar(50) NOT NULL,
+	ProductNumber nvarchar(10) NOT NULL,
+	Color nvarchar(30),
 	SafetyStockLevel int NOT NULL,
 	ReorderPoint int NOT NULL,
 	StandardCost Float NOT NULL,
 	ListPrice Float NOT NULL,
-	Size varchar(5),
-	SizeUnitMeasureCode varchar(5),
+	Size nvarchar(5),
+	SizeUnitMeasureCode nvarchar(5),
 	Weight float,
-	WeightUnitMeasureCode varchar(5),
+	WeightUnitMeasureCode nvarchar(5),
 	DaysToManufacture int not null,
 	ProductSubcategoryID int,
 	ProductModelID int,
@@ -151,10 +151,11 @@ Create Table Sales_DW.dbo.Dim_Product
 go
 
 --------------ProductSubcategory----------------------
+
 Create Table Sales_DW.dbo.ProductSubcategory
 (
 	ProductSubcategoryID int NOT NULL Primary Key,
-	Name Varchar(20) NOT NULL
+	Name nvarchar(20) NOT NULL
 )
 Go
 
@@ -164,10 +165,10 @@ Create Table Sales_DW.dbo.Dim_Product_Photos
 (
 	ProductID int NOT NULL,
 	product_PhotoID int NOT NULL,
-	Small_image Varbinary(MAX) NOT NULL,
-	Small_image_name varchar(50) NOT NULL,
-	Large_image Varbinary(MAX) NOT NULL,
-	Large_image_name varchar(50) NOT NULL,
+	Small_image Varbinary(MAX) NULL,
+	Small_image_name nvarchar(50) NOT NULL,
+	Large_image Varbinary(MAX) NULL,
+	Large_image_name nvarchar(50) NOT NULL,
 
 	Primary key(ProductID,product_PhotoID)
 )
@@ -178,8 +179,8 @@ go
 Create Table Sales_DW.dbo.Dim_currency
 (
 	CurrencyRateID int not null Primary key,
-	From_Currency varchar(50) NOT NULL,
-	To_Currency varchar(50) NOT NULL,
+	From_Currency nvarchar(50) NOT NULL,
+	To_Currency nvarchar(50) NOT NULL,
 	AverageRate Float NOT NULL,
 	EndOfDayRate Float NOT NULL
 )
@@ -190,7 +191,7 @@ go
 create Table Sales_DW.dbo.Dim_Store
 (
 	storeId int NOT NULL Primary Key,
-	store_name Varchar(50) NOT NULL
+	store_name nvarchar(50) NOT NULL
 )
 go
 
@@ -199,37 +200,40 @@ go
 Create table Sales_DW.dbo.Dim_ShipMethods
 (
 	ShipMethodID int NOT NULL Primary Key,
-	ShipMethod varchar(50) NOT NULL,
+	ShipMethod nvarchar(50) NOT NULL,
 	ShipBase Float NOT NULL,
 	ShipRate Float NOT NULL
 )
 go
 
 -----------------Dim_person-----------------
+
 Create table Sales_DW.dbo.Dim_person
 (
 	SalesPersonID INT NOT NULL Primary Key,
-	Title varchar(20),
-	FullName varchar(50) NOT NULL,
-	JobTitle varchar(50) NOT NULL,
-	PhoneNumber varchar(50) NOT NULL,
-	PhoneNumberType varchar(50) NOT NULL,
-	EmailAddress varchar(50) NOT NULL,
-	AddressLine1 varchar(50) NOT NULL,
-	City varchar(50) NOT NULL,
-	StateProvinceName varchar(50) NOT NULL,
-	PostalCode varchar(50) NOT NULL,
-	CountryRegionName varchar(50) NOT NULL,
-	TerritoryName varchar(50)
+	Title nvarchar(20),
+	FullName nvarchar(50) NOT NULL,
+	JobTitle nvarchar(50) NOT NULL,
+	PhoneNumber nvarchar(50) NOT NULL,
+	PhoneNumberType nvarchar(50) NOT NULL,
+	EmailAddress nvarchar(50) NOT NULL,
+	AddressLine1 nvarchar(50) NOT NULL,
+	City nvarchar(50) NOT NULL,
+	StateProvinceName nvarchar(50) NOT NULL,
+	PostalCode nvarchar(50) NOT NULL,
+	CountryRegionName nvarchar(50) NOT NULL,
+	TerritoryName nvarchar(50)
 )
 go
+----------------Dim_status-----------------
 
 Create Table Sales_DW.dbo.Dim_Statuses
 (
 	StatusID INT NOT NULL Primary Key,
-	Status varchar(20) NOT NULL
+	Status nvarchar(20) NOT NULL
 )
 go
+
 
 -----------------initial_inserts------------------------
 
@@ -273,7 +277,7 @@ SELECT
     GETDATE() AS StartDate,
     NULL AS EndDate,
     1 AS IsCurrent
-FROM Sales_OLTP.Production.Product;
+FROM AdventureWorks2016.Production.Product;
 go
 ----------------------------------------------
 
@@ -307,7 +311,7 @@ SELECT
 	PostalCode,
 	CountryRegionName,
 	TerritoryName
-FROM Sales_OLTP.Sales.vSalesPerson
+FROM AdventureWorks2016.Sales.vSalesPerson
 go
 
 Insert into Sales_DW.dbo.FactSales
@@ -378,9 +382,9 @@ select
    	OrderDate,
     	DueDate,
     	ShipDate
-from Sales_OLTP.Sales.SalesOrderDetail AS D
-left join Sales_OLTP.Sales.SalesOrderHeader AS H ON D.SalesOrderID=H.SalesOrderID
-left join Sales_OLTP.Sales.Customer  AS C ON C.CustomerID = H.CustomerID
+from AdventureWorks2016.Sales.SalesOrderDetail AS D
+left join AdventureWorks2016.Sales.SalesOrderHeader AS H ON D.SalesOrderID=H.SalesOrderID
+left join AdventureWorks2016.Sales.Customer  AS C ON C.CustomerID = H.CustomerID
 go
 
 --------------------------------------------
@@ -399,7 +403,7 @@ SELECT
 	CardNumber,
 	ExpMonth,
 	ExpYear
-FROM Sales_OLTP.Sales.CreditCard
+FROM AdventureWorks2016.Sales.CreditCard
 go
 
 ------------------------------------------------
@@ -433,7 +437,7 @@ SELECT DISTINCT
         WHEN DATEPART(WEEKDAY, OrderDate) IN (1, 7) THEN 1   
         ELSE 0
     END AS IsWeekend
-FROM Sales_OLTP.Sales.SalesOrderHeader;    
+FROM AdventureWorks2016.Sales.SalesOrderHeader;    
 go
 
 ------------------------------------------------
@@ -458,7 +462,7 @@ SELECT
 	SalesLastYear,
 	CostYTD,
 	CostLastYear
-FROM Sales_OLTP.Sales.SalesTerritory
+FROM AdventureWorks2016.Sales.SalesTerritory
 go
 
 ------------------------------------------------
@@ -483,8 +487,8 @@ SELECT
 	s.Category,
 	s.MinQty,
 	MaxQty
-from Sales_OLTP.Sales.SpecialOfferProduct as P
-left join Sales_OLTP.Sales.SpecialOffer as s 
+from AdventureWorks2016.Sales.SpecialOfferProduct as P
+left join AdventureWorks2016.Sales.SpecialOffer as s 
 ON s.SpecialOfferID = p.SpecialOfferID
 go
 
@@ -498,7 +502,7 @@ insert into Sales_DW.dbo.ProductSubcategory
 SELECT 
 	ProductSubcategoryID,
 	Name
-from Sales_OLTP.Production.ProductSubcategory
+from AdventureWorks2016.Production.ProductSubcategory
 go
 
 ------------------------------------------------
@@ -519,8 +523,8 @@ SELECT
 	ThumbnailPhotoFileName as Small_image_name,
 	LargePhoto as Large_image,
 	LargePhotoFileName as Large_image_name
-From Sales_OLTP.Production.ProductProductPhoto as PP
-left join Sales_OLTP.Production.ProductPhoto as P
+From AdventureWorks2016.Production.ProductProductPhoto as PP
+left join AdventureWorks2016.Production.ProductPhoto as P
 ON p.ProductPhotoID = pp.ProductPhotoID
 Order by ProductID
 go
@@ -541,10 +545,10 @@ Select
 	C.Name as To_Currency,
 	AverageRate,
 	EndOfDayRate
-FROM Sales_OLTP.Sales.CurrencyRate as R
-left join Sales_OLTP.Sales.Currency as C
+FROM AdventureWorks2016.Sales.CurrencyRate as R
+left join AdventureWorks2016.Sales.Currency as C
 ON c.CurrencyCode = R.ToCurrencyCode
-left join Sales_OLTP.Sales.Currency as f
+left join AdventureWorks2016.Sales.Currency as f
 ON f.CurrencyCode = R.FromCurrencyCode
 go
 
@@ -558,7 +562,7 @@ insert into Sales_DW.dbo.Dim_Store
 Select
 	BusinessEntityID as storeId,
 	Name as store_name
-from Sales_OLTP.Sales.store
+from AdventureWorks2016.Sales.store
 go
 
 ------------------------------------------------
@@ -575,7 +579,7 @@ Select
 	Name as ShipMethod,
 	ShipBase,
 	ShipRate
-From Sales_OLTP.Purchasing.ShipMethod
+From AdventureWorks2016.Purchasing.ShipMethod
 go
 
 INSERT INTO Sales_DW.dbo.Dim_Statuses (StatusID, [Status])
