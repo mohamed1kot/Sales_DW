@@ -55,11 +55,11 @@ This project involves extracting data from the **AdventureWorks** transactional 
   - **Year-over-Year (YoY) Growth**.
   - **Top Customers**.
 
-![Question Screenshot](./dashboard/images/Screenshot_٢٠٢٤١١٢١_١٩٢٨٤٩.png)
-![Question Screenshot](./dashboard/images/Screenshot_٢٠٢٤١١٢١_١٩٢٩٢٣.png)
-![Question Screenshot](./dashboard/images/Screenshot_٢٠٢٤١١٢١_١٩٣٠٢٥.png)
-![Question Screenshot](./dashboard/images/Screenshot_٢٠٢٤١١٢١_١٩٣٠٥٩.png)
-![Question Screenshot](./dashboard/images/Screenshot_٢٠٢٤١١٢١_١٩٣١٢٩.png)
+![Question Screenshot](./dashboard/images/1.png)
+![Question Screenshot](./dashboard/images/2.png)
+![Question Screenshot](./dashboard/images/3.png)
+![Question Screenshot](./dashboard/images/4.png)
+![Question Screenshot](./dashboard/images/5.png)
 
 
 
