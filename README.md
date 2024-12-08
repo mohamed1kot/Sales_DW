@@ -101,7 +101,4 @@ This project involves extracting data from the **AdventureWorks** transactional 
 ---
 ### Authors
 
-- <span style="color: blue;">Sophy Farag</span> 
-- <span style="color: orange;">Abdelrahman Salah</span> 
-- <span style="color: orange;">Mohamed Sayed</span> 
 - <span style="color: orange;">Mohamed Amged</span> 
