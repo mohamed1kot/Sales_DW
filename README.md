@@ -91,7 +91,7 @@ This project involves extracting data from the **AdventureWorks** transactional 
 ### Steps
 1. Clone this repository:
    ```bash
-   git clone https://github.com/mohamed1kot/Sales_DW/blob/main
+   git clone https://github.com/mohamed1kot/Sales_DW.git
     ```
 2. Open and run the AdventureWorks_ETL.dtsx package in SSIS to perform the ETL process.
 3. Open the Power BI report file (Sales_Dashboard.pbix) to view and interact with the dashboard.
