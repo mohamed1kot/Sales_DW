@@ -101,4 +101,10 @@ This project involves extracting data from the **AdventureWorks** transactional 
 ---
 ### Authors
 
-- <span style="color: orange;">Mohamed Amged</span> 
+- <span style="color: orange;">Mohamed Amged</span>
+
+
+
+## 🛡️ License
+
+This project is licensed under the [MIT License](LICENSE).
